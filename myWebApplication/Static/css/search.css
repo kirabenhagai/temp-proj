@@ -1,0 +1,58 @@
+﻿body {
+	margin: 10px auto;
+	text-align: left;
+	font-family: Calibri;
+	background: #ffffff;
+	max-width: 1200px;
+}
+.search-button-class {
+	border-radius: 4px;
+	padding: 6px 15px;
+	text-decoration: none;
+	background: #ffffff;
+	color: #008dc8;
+	border-color: #008dc8;
+	border-style: solid;
+	border-width: 0.5px;
+}
+
+.product-properties {
+	display: inline-block;
+	border: 1px solid black;
+	padding: 0.1px;
+	margin: 0.5px;
+	max-width: 260px;
+	min-width: 260px;
+}
+
+.product-div {
+	display:inline;
+}
+
+.search-content {
+	height: 40px;
+	width: 5000px;
+}
+
+.all-search-result {
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+	max-width: 280px;
+}

@@ -1,0 +1,11 @@
+#
+#
+#  Don't touch this file. Don't edit it, at all. Thanks.
+#
+#
+
+net/out
+.gitignore.backup
+*.orig
+[Tt]humbs.db
+untitled/.idea/*

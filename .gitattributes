@@ -1,0 +1,24 @@
+# Auto detect text files and perform LF normalization
+# http://davidlaing.com/2012/09/19/customise-your-gitattributes-to-become-a-git-ninja/
+
+# Avoid EOL normalization as default behaviour
+* -text
+
+# .NET
+*.cs     diff=csharp
+*.csproj eol=crlf
+
+# JAVA
+*.java diff=java
+
+# Binary files that can still be diff''ed by text
+*.doc	diff=astextplain
+*.DOC	diff=astextplain
+*.docx	diff=astextplain
+*.DOCX	diff=astextplain
+*.dot	diff=astextplain
+*.DOT	diff=astextplain
+*.pdf	diff=astextplain
+*.PDF	diff=astextplain
+*.rtf	diff=astextplain
+*.RTF	diff=astextplain

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 using Newtonsoft.Json;
 
 namespace myWebApplication.Api.Products
@@ -24,10 +20,6 @@ namespace myWebApplication.Api.Products
 		[Description("This is the sale price of the product main buying option. This price is always smaller or equal to the regular price.")]
 		[JsonProperty(PropertyName = "Price")]
 		public decimal? Price { get; set; }
-
-//		[Description("Product rating (1-5 stars). If not rated, no rating is returned.")]
-//		[JsonProperty(PropertyName = "Rating")]
-//		public int? Rating { get; set; }
 
 		[Description("URL containing the product image.")]
 		[JsonProperty(PropertyName = "ImageUrl")]

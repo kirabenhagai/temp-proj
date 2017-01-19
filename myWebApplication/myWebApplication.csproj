@@ -201,7 +201,6 @@
     <Compile Include="Configurations\ApplicationSettings.cs" />
     <Compile Include="Configurations\IApplicationSettings.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Domain\SearchQueryBuilder.cs" />
     <Compile Include="Domain\UriProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

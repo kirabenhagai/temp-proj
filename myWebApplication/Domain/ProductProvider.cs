@@ -10,9 +10,14 @@ using Newtonsoft.Json;
 
 namespace myWebApplication.Domain
 {
-	public class ProductProvider
+	public interface IProductProvider
 	{
-		UriProvider uriProvider = new UriProvider();
+		ProductSearchResultModel SearchProducts(ApplicationSettings settings, string search);
+	}
+
+	public class ProductProvider : IProductProvider
+	{
+		readonly UriProvider uriProvider = new UriProvider();
 		public ProductSearchResultModel SearchProducts(ApplicationSettings settings, string search)
 		{
 			var emptyResults = new ProductSearchResultModel() { Products = new List<ProductModel>(), Count = 0 };

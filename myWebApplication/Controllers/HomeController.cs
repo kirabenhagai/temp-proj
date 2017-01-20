@@ -14,9 +14,13 @@ namespace myWebApplication.Controllers
 {
 	public class HomeController : Controller
 	{
-		public ApplicationSettings applicationSettings = new ApplicationSettings();
-		public ProductProvider ProductProvider = new ProductProvider();
-		public ProductSearchResultModel ProductSearchResultModel { get; set; }
+		public ApplicationSettings ApplicationSettings = new ApplicationSettings();
+		private readonly IProductProvider _productProvider;
+
+		public HomeController(IProductProvider productProvider)
+		{
+			_productProvider = productProvider;
+		}
 
 		[Route("Index")]
 		public ActionResult Index()
@@ -27,7 +31,7 @@ namespace myWebApplication.Controllers
 		[Route("Search")]
 		public ActionResult Search(string query)
 		{
-			var searchModel = ProductProvider.SearchProducts(applicationSettings, query);
+			var searchModel = _productProvider.SearchProducts(ApplicationSettings, query);
 			if (searchModel == null)
 				return RedirectToAction("Search", "Home", new { query = "baby" });
 

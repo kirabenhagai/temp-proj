@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using myWebApplication.Api.Products;
 using myWebApplication.Api.Search;
 using myWebApplication.Configurations;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 
 namespace myWebApplication.Domain
@@ -13,20 +15,22 @@ namespace myWebApplication.Domain
 		UriProvider uriProvider = new UriProvider();
 		public ProductSearchResultModel SearchProducts(ApplicationSettings settings, string search)
 		{
+			var emptyResults = new ProductSearchResultModel() { Products = new List<ProductModel>(), Count = 0 };
+			if (string.IsNullOrEmpty(search))
+				return emptyResults;
+
 			using (var client = new WebClient())
 			{
 				var json = client.DownloadString(uriProvider.GetSearchUri(search, settings));
-				return JsonConvert.DeserializeObject<ProductSearchResultModel>(json);
-			}
-		}
+				var results = JsonConvert.DeserializeObject<ProductSearchResultModel>(json);
+				if (results == null)
+					return emptyResults;
 
-		public ProductModel GetProduct(int productId, ApplicationSettings settings)
-		{
-			using (var client = new WebClient())
-			{
-				var json = client.DownloadString(uriProvider.GetProductUrl(productId, settings));
-				var list = JsonConvert.DeserializeObject<IList<ProductModel>>(json);
-				return list.Single();
+				foreach (var p in results.Products)
+				{
+					p.ProductUrl = settings.ProductUrlPrefix + p.ProductUrl;
+				}
+				return results;
 			}
 		}
 	}

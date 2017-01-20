@@ -12,7 +12,12 @@ namespace myWebApplication.Domain
 		{
 			using (ISession session = NHibernateHelper.OpenSession())
 			{
-				var searchHistory = session.CreateCriteria<SearchHistory>().AddOrder(Order.Desc("Time")).SetMaxResults(5).List<SearchHistory>();
+				var searchHistory =
+					session.CreateCriteria<SearchHistory>()
+						.AddOrder(Order.Desc("Time"))
+						.SetMaxResults(5)
+						.List<SearchHistory>()
+						.Reverse();
 				return new SearchHistoryList(searchHistory);
 			}
 		}

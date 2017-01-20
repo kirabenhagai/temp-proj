@@ -1,7 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using myWebApplication.Configurations;
+using System.Net;
+using Newtonsoft.Json;
+using myWebApplication.Api.Products;
 using myWebApplication.Api.Search;
 using myWebApplication.Domain;
+using myWebApplication.Models;
 
 namespace myWebApplication.Controllers
 {
@@ -12,10 +19,8 @@ namespace myWebApplication.Controllers
 		public ProductSearchResultModel ProductSearchResultModel { get; set; }
 
 		[Route("Index")]
-		public ActionResult Index(string search="tv")
+		public ActionResult Index()
 		{
-			ProductSearchResultModel = ProductProvider.SearchProducts(applicationSettings, search);
-
 			return View();
 		}
 
@@ -33,24 +38,6 @@ namespace myWebApplication.Controllers
 			return PartialView(searchModel.Products);
 		}
 
-		[Route("Product")]
-		public ActionResult Product(int product)
-		{
-			var productResult = ProductProvider.GetProduct(product, applicationSettings);
-
-			return View(productResult);
-		}
-
-		[Route("SearchHistoryList")]
-		public ActionResult SearchHistoryList()
-		{
-			var searchHistoryProvider = new SearchHistoryProvider();
-
-			var searchHistoryResult = searchHistoryProvider.GetHistory();
-
-			return View(searchHistoryResult);
-		}
-
 		[Route("SearchHistory")]
 		public ActionResult SearchHistory()
 		{
@@ -58,7 +45,7 @@ namespace myWebApplication.Controllers
 
 			var searchHistoryResult = searchHistoryProvider.GetHistory();
 
-			return Json(searchHistoryResult.Histories, JsonRequestBehavior.AllowGet);
+			return PartialView(searchHistoryResult.Histories);
 		}
 	}
 }

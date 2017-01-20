@@ -56,3 +56,13 @@ select,
 textarea {
 	max-width: 280px;
 }
+
+.last-searches ul {
+	padding-left:0;
+}
+
+.last-searches ul li {
+	list-style-type: none;
+	display: inline;
+	padding-right:10px;
+}

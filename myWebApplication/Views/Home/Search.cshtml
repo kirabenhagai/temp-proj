@@ -1,7 +1,7 @@
 ﻿@foreach (var product in Model)
 {
 	<div class="product-div">
-		<a href="./home/Product?product=@product.Id" target="_blank">
+		<a href="@product.ProductUrl" target="_blank">
 			<div class="product-properties"> <img class="some-name" src="@product.ImageUrl" alt="" style="width: 190px; height: 190px">
 				<span><br>Name: @product.Name</span>
 				<span><br>Price: @product.Price</span>

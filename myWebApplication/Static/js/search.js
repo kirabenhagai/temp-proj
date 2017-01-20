@@ -1,41 +1,50 @@
 ﻿var enterKeyCode = 13;
 $(document).ready(function () {
 	var scope = $("#baseDiv");
+	var searchTextbox = scope.find(".search-content");
+	var searchButton = scope.find(".search-button-class");
+	var lastSearches = scope.find(".last-searches");
+	var searchResults = $(".all-search-result");
+
+	setSearchEvents();
+	updateSearchHistory();
 
 	function search() {
-		var query = scope.find(".search-content").val();
+		var query = scope.find(".search-content").val().trim();
 		if (query == "")
 			return;
+		searchResults.html("<h2>Loading...</h2>");
 		var results = $.get("/Home/Search?query=" + encodeURI(query),
 			function (data) {
-				$('#search-result').html(data);
+				searchResults.html(data);
 				updateSearchHistory();
 			}).error(function (err) {
-				$('#search-result').html("Error occured while searching your results.");
+				searchResults.html("Error occured while searching your results.");
 			});
 	}
 
-	scope.find(".search-button-class").click(search);
-	$("#search-query").on("input", search);
-	$("#search-query").keyup(function (event) {
-		if (event.keyCode == enterKeyCode) {
-			search();
-		}
-	});
+	function searchTerm(query) {
+		searchTextbox.val(query);
+		search();
+	}
+
+	function setSearchEvents() {
+		searchButton.click(search);
+		searchTextbox
+			.keyup(function(event) {
+				if (event.keyCode == enterKeyCode) {
+					search();
+				}
+			});
+	}
 
 	function updateSearchHistory() {
-		$.getJSON("/Home/SearchHistory", function (data) {
-			var searches = scope.find(".last-searches");
-			searches.empty();
-			$.each(data,
-				function () {
-					$("<option />", {
-						val: this.SearchTerm,
-						text: this.SearchTerm
-					}).appendTo(searches);
-				});
+		$.get("/Home/SearchHistory", function (data) {
+			lastSearches.html(data);
+			lastSearches.find(".search-href").each(function() {
+				$(this).on('click', function() { searchTerm($(this.firstChild).text()); });
+			});
 		});
 	}
 
-	updateSearchHistory();
 });

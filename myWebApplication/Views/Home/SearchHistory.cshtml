@@ -1,18 +1,6 @@
-﻿@model myWebApplication.Domain.SearchHistoryList
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>SearchHistory</title>
-</head>
-<body>
-<div>
-	<p>SearchTerm: @Model.SearchTerm</p>
-</div>
-</body>
-</html>
+﻿<ul>
+	@foreach (var segment in Model)
+	{
+		<li><a href="#" class="search-href">@segment.SearchTerm</a></li>
+	}
+</ul>

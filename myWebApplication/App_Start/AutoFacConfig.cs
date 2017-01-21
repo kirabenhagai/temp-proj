@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using myWebApplication.Configurations;
 using myWebApplication.Domain;
 
 namespace myWebApplication
@@ -43,7 +40,10 @@ namespace myWebApplication
 
 		private static void RegisterComponents(ContainerBuilder builder)
 		{
+			builder.RegisterType<UriProvider>().As<IUriProvider>().InstancePerRequest();
+			builder.RegisterType<SearchHistoryProvider>().As<ISearchHistoryProvider>().InstancePerRequest();
 			builder.RegisterType<ProductProvider>().As<IProductProvider>().InstancePerRequest();
+			builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>().InstancePerRequest();
 		}
 	}
 }

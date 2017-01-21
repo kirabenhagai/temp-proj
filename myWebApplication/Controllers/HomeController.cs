@@ -14,12 +14,15 @@ namespace myWebApplication.Controllers
 {
 	public class HomeController : Controller
 	{
-		public ApplicationSettings ApplicationSettings = new ApplicationSettings();
 		private readonly IProductProvider _productProvider;
+		private readonly ISearchHistoryProvider _searchHistoryProvider;
+		private readonly IApplicationSettings _applicationSettings;
 
-		public HomeController(IProductProvider productProvider)
+		public HomeController(IProductProvider productProvider, ISearchHistoryProvider searchHistoryProvider, IApplicationSettings applicationSettings)
 		{
 			_productProvider = productProvider;
+			_searchHistoryProvider = searchHistoryProvider;
+			_applicationSettings = applicationSettings;
 		}
 
 		[Route("Index")]
@@ -31,13 +34,11 @@ namespace myWebApplication.Controllers
 		[Route("Search")]
 		public ActionResult Search(string query)
 		{
-			var searchModel = _productProvider.SearchProducts(ApplicationSettings, query);
+			var searchModel = _productProvider.SearchProducts(_applicationSettings, query);
 			if (searchModel == null)
 				return RedirectToAction("Search", "Home", new { query = "baby" });
 
-			var searchHistoryProvider = new SearchHistoryProvider();
-
-			searchHistoryProvider.AddToHistory(query);
+			_searchHistoryProvider.AddToHistory(query);
 
 			return PartialView(searchModel.Products);
 		}
@@ -45,9 +46,7 @@ namespace myWebApplication.Controllers
 		[Route("SearchHistory")]
 		public ActionResult SearchHistory()
 		{
-			var searchHistoryProvider = new SearchHistoryProvider();
-
-			var searchHistoryResult = searchHistoryProvider.GetHistory();
+			var searchHistoryResult = _searchHistoryProvider.GetHistory();
 
 			return PartialView(searchHistoryResult.Histories);
 		}

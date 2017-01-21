@@ -12,13 +12,19 @@ namespace myWebApplication.Domain
 {
 	public interface IProductProvider
 	{
-		ProductSearchResultModel SearchProducts(ApplicationSettings settings, string search);
+		ProductSearchResultModel SearchProducts(IApplicationSettings settings, string search);
 	}
 
 	public class ProductProvider : IProductProvider
 	{
-		readonly UriProvider uriProvider = new UriProvider();
-		public ProductSearchResultModel SearchProducts(ApplicationSettings settings, string search)
+		private readonly IUriProvider _uriProvider;
+
+		public ProductProvider(IUriProvider uriProvider)
+		{
+			_uriProvider = uriProvider;
+		}
+
+		public ProductSearchResultModel SearchProducts(IApplicationSettings settings, string search)
 		{
 			var emptyResults = new ProductSearchResultModel() { Products = new List<ProductModel>(), Count = 0 };
 			if (string.IsNullOrEmpty(search))
@@ -26,7 +32,7 @@ namespace myWebApplication.Domain
 
 			using (var client = new WebClient())
 			{
-				var json = client.DownloadString(uriProvider.GetSearchUri(search, settings));
+				var json = client.DownloadString(_uriProvider.GetSearchUri(search, settings));
 				var results = JsonConvert.DeserializeObject<ProductSearchResultModel>(json);
 				if (results == null)
 					return emptyResults;

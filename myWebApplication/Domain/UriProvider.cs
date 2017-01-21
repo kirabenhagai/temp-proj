@@ -3,16 +3,22 @@ using myWebApplication.Configurations;
 
 namespace myWebApplication.Domain
 {
-	public class UriProvider
+	public interface IUriProvider
 	{
-		public Uri GetSearchUri(string search, ApplicationSettings settings)
+		Uri GetSearchUri(string search, IApplicationSettings applicationSettings);
+		Uri GetProductUrl(int productId, IApplicationSettings applicationSettings);
+	}
+
+	public class UriProvider : IUriProvider
+	{
+		public Uri GetSearchUri(string search, IApplicationSettings applicationSettings)
 		{
-			return new Uri($"{settings.SearchApiUrl}?q={search}&limit=20&token={settings.AppToken}&hash={settings.AppHash}");
+			return new Uri($"{applicationSettings.SearchApiUrl}?q={search}&limit=20&token={applicationSettings.AppToken}&hash={applicationSettings.AppHash}");
 		}
 
-		public Uri GetProductUrl(int productId, ApplicationSettings settings)
+		public Uri GetProductUrl(int productId, IApplicationSettings applicationSettings)
 		{
-			return new Uri($"{settings.GetProductUrl}?ids={productId}&token={settings.AppToken}&hash={settings.AppHash}");
+			return new Uri($"{applicationSettings.GetProductUrl}?ids={productId}&token={applicationSettings.AppToken}&hash={applicationSettings.AppHash}");
 		}
 	}
 }

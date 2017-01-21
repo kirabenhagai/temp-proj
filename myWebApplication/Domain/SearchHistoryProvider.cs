@@ -1,12 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
 
 namespace myWebApplication.Domain
 {
-	public class SearchHistoryProvider
+	public interface ISearchHistoryProvider
+	{
+		SearchHistoryList GetHistory();
+		void AddToHistory(string query);
+	}
+
+	public class SearchHistoryProvider : ISearchHistoryProvider
 	{
 		public SearchHistoryList GetHistory()
 		{
@@ -29,7 +34,7 @@ namespace myWebApplication.Domain
 				using (ITransaction trans = session.BeginTransaction())
 				{
 					var histories = session.CreateCriteria(typeof(SearchHistory))
-						.Add(NHibernate.Criterion.Restrictions.Eq("SearchTerm", query))
+						.Add(Restrictions.Eq("SearchTerm", query))
 						.List<SearchHistory>();
 					foreach (SearchHistory s in histories)
 						session.Delete(s);

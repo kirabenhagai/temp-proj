@@ -204,7 +204,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AutoFacConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configurations\ApplicationSettings.cs" />
     <Compile Include="Controllers\HomeController.cs" />

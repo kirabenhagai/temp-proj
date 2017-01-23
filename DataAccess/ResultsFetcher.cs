@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +27,7 @@ namespace DataAccess
 			{
 				var json = client.DownloadString(_provider.GetSearchUri(search));
 				var results = JsonConvert.DeserializeObject<ProductSearchResultModel>(json);
-				return results.Products;
+				return results?.Products;
 			}
 		}
 	}

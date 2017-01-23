@@ -203,9 +203,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="NHibernate\NHibernateHelper.cs" />
     <Compile Include="NHibernate\ProductProvider.cs" />
     <Compile Include="NHibernate\SearchHistoryMapping.cs" />

@@ -1,4 +1,5 @@
-﻿using NHibernate.Mapping.ByCode.Conformist;
+﻿using Domain;
+using NHibernate.Mapping.ByCode.Conformist;
 
 namespace myWebApplication.Domain
 {

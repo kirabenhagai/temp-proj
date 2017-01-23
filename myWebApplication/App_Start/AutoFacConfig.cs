@@ -2,6 +2,8 @@
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using DataAccess;
+using Domain;
 
 namespace myWebApplication
 {
@@ -20,6 +22,8 @@ namespace myWebApplication
 
 		private static void RegisterComponents(ContainerBuilder builder)
 		{
+			builder.RegisterAssemblyTypes(Assembly.Load("Domain")).InstancePerLifetimeScope().AsImplementedInterfaces();
+			builder.RegisterAssemblyTypes(Assembly.Load("DataAccess")).InstancePerLifetimeScope().AsImplementedInterfaces();
 			builder.RegisterAssemblyTypes(Assembly.Load("myWebApplication")).InstancePerLifetimeScope().AsImplementedInterfaces();
 			builder.RegisterControllers(Assembly.Load("myWebApplication"));
 		}

@@ -197,25 +197,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\Products\ProductsModel.cs" />
-    <Compile Include="Api\Search\FacetValueModel.cs" />
-    <Compile Include="Api\Search\ProductSearchResultModel.cs" />
     <Compile Include="App_Start\AutoFacConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Configurations\ApplicationSettings.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Domain\UriProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Domain\NHibernateHelper.cs" />
-    <Compile Include="Domain\ProductProvider.cs" />
-    <Compile Include="Domain\SearchHistory.cs" />
-    <Compile Include="Domain\SearchHistoryMapping.cs" />
-    <Compile Include="Domain\SearchHistoryProvider.cs" />
+    <Compile Include="NHibernate\NHibernateHelper.cs" />
+    <Compile Include="NHibernate\ProductProvider.cs" />
+    <Compile Include="NHibernate\SearchHistoryMapping.cs" />
+    <Compile Include="NHibernate\SearchHistoryProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -223,25 +217,11 @@
     <Content Include="Static\css\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Domain\SearchHistory.hbm.xml" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="NHibernate\SearchHistory.hbm.xml" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="hibernate.cfg.xml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Static\js\client.js" />
     <Content Include="Static\js\search.js" />
     <Content Include="Web.config" />
@@ -266,7 +246,16 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{37F1818C-A47D-4BED-9566-519A044A08E3}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{37F74971-2656-4BF0-998F-2776A2BF24C7}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

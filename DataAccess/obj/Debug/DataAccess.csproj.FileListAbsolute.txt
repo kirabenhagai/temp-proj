@@ -1,0 +1,9 @@
+C:\dev\myWebApplication\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+C:\dev\myWebApplication\DataAccess\bin\Debug\DataAccess.dll
+C:\dev\myWebApplication\DataAccess\bin\Debug\DataAccess.pdb
+C:\dev\myWebApplication\DataAccess\bin\Debug\Domain.dll
+C:\dev\myWebApplication\DataAccess\bin\Debug\Newtonsoft.Json.dll
+C:\dev\myWebApplication\DataAccess\bin\Debug\Domain.pdb
+C:\dev\myWebApplication\DataAccess\bin\Debug\Newtonsoft.Json.xml
+C:\dev\myWebApplication\DataAccess\obj\Debug\DataAccess.dll
+C:\dev\myWebApplication\DataAccess\obj\Debug\DataAccess.pdb

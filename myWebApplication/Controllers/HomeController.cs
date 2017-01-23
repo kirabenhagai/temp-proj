@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using myWebApplication.Configurations;
+using Domain;
 using myWebApplication.Domain;
 
 namespace myWebApplication.Controllers
@@ -26,13 +26,13 @@ namespace myWebApplication.Controllers
 		[Route("Search")]
 		public ActionResult Search(string query)
 		{
-			var searchModel = _productProvider.SearchProducts(_applicationSettings, query);
+			var searchModel = _productProvider.SearchProducts(query);
 			if (searchModel == null)
 				return RedirectToAction("Search", "Home", new { query = "baby" });
 
 			_searchHistoryProvider.AddToHistory(query);
 
-			return PartialView(searchModel.Products);
+			return PartialView(searchModel);
 		}
 
 		[Route("SearchHistory")]

@@ -43,12 +43,6 @@ namespace myWebApplication
 		{
 			builder.RegisterAssemblyTypes(Assembly.Load("myWebApplication")).InstancePerLifetimeScope().AsImplementedInterfaces();
 			builder.RegisterControllers(Assembly.Load("myWebApplication"));
-
-
-			//			builder.RegisterType<UriProvider>().As<IUriProvider>().InstancePerRequest();
-			//			builder.RegisterType<SearchHistoryProvider>().As<ISearchHistoryProvider>().InstancePerRequest();
-			////			builder.RegisterType<ProductProvider>().As<IProductProvider>().InstancePerRequest();
-			//			builder.RegisterType<ApplicationSettings>().As<IApplicationSettings>().InstancePerRequest();
 		}
 	}
 }

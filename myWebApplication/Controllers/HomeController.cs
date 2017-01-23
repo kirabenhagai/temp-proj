@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using myWebApplication.Configurations;
-using System.Net;
-using Newtonsoft.Json;
-using myWebApplication.Api.Products;
-using myWebApplication.Api.Search;
 using myWebApplication.Domain;
-using myWebApplication.Models;
 
 namespace myWebApplication.Controllers
 {

@@ -6,10 +6,10 @@ namespace myWebApplication.Domain
 	{
 			public SearchHistoryMapping()
 			{
-				this.Table("search_history");
-				this.Id(p => p.Id, map => map.Column("id"));
-				this.Property(p => p.Time, map => map.Column("time"));
-				this.Property(p => p.SearchTerm, map => map.Column("search_term"));
+				Table("search_history");
+				Id(p => p.Id, map => map.Column("id"));
+				Property(p => p.Time, map => map.Column("time"));
+				Property(p => p.SearchTerm, map => map.Column("search_term"));
 			}
 	}
 }

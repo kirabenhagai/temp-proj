@@ -20,7 +20,7 @@ namespace myWebApplication.Domain
 					configuration.Configure();
 					var mapper = new ModelMapper();
 					mapper.AddMappings(Assembly.GetExecutingAssembly().GetExportedTypes());
-					HbmMapping mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
+					var mapping = mapper.CompileMappingForAllExplicitlyAddedEntities();
 					configuration.AddMapping(mapping);
 					_sessionFactory = configuration.BuildSessionFactory();
 				}

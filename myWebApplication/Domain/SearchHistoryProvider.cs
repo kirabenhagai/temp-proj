@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NHibernate;
 using NHibernate.Criterion;
@@ -7,13 +8,13 @@ namespace myWebApplication.Domain
 {
 	public interface ISearchHistoryProvider
 	{
-		SearchHistoryList GetHistory();
+		IEnumerable<SearchHistory> GetHistory();
 		void AddToHistory(string query);
 	}
 
 	public class SearchHistoryProvider : ISearchHistoryProvider
 	{
-		public SearchHistoryList GetHistory()
+		public IEnumerable<SearchHistory> GetHistory()
 		{
 			using (ISession session = NHibernateHelper.OpenSession())
 			{
@@ -23,7 +24,7 @@ namespace myWebApplication.Domain
 						.SetMaxResults(5)
 						.List<SearchHistory>()
 						.Reverse();
-				return new SearchHistoryList(searchHistory);
+				return searchHistory;
 			}
 		}
 

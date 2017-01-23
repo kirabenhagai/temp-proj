@@ -1,26 +1,29 @@
 ﻿var enterKeyCode = 13;
 $(document).ready(function () {
-	var scope = $("#baseDiv");
-	var searchTextbox = scope.find(".search-content");
-	var searchButton = scope.find(".search-button-class");
-	var lastSearches = scope.find(".last-searches");
-	var searchResults = $(".all-search-result");
+	var scope = $("#search-box");
+	var searchTextbox = scope.find(".search-content-js");
+	var searchButton = scope.find(".search-button-js");
+	var lastSearches = scope.find(".last-searches-js");
+	var searchResults = $(".all-search-result-js");
 
 	setSearchEvents();
 	updateSearchHistory();
 
 	function search() {
-		var query = scope.find(".search-content").val().trim();
-		if (query == "")
+		var query = scope.find(".search-content-js").val().trim();
+		if (query === "")
 			return;
 		searchResults.html("<h2>Loading...</h2>");
-		var results = $.get("/Home/Search?query=" + encodeURI(query),
-			function (data) {
-				searchResults.html(data);
-				updateSearchHistory();
-			}).error(function (err) {
-				searchResults.html("Error occured while searching your results.");
-			});
+		searchQuery(query, searchQuerySuccess, searchQueryError);
+	}
+
+	function searchQuerySuccess(data) {
+		searchResults.html(data);
+		updateSearchHistory();
+	}
+
+	function searchQueryError(err) {
+		searchResults.html("Error occured while searching your results.");
 	}
 
 	function searchTerm(query) {
@@ -32,7 +35,7 @@ $(document).ready(function () {
 		searchButton.click(search);
 		searchTextbox
 			.keyup(function(event) {
-				if (event.keyCode == enterKeyCode) {
+				if (event.keyCode === enterKeyCode) {
 					search();
 				}
 			});

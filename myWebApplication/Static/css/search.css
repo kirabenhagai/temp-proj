@@ -4,8 +4,11 @@
 	font-family: Calibri;
 	background: #ffffff;
 	max-width: 1200px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+
 }
-.search-button-class {
+.search-button {
 	border-radius: 4px;
 	padding: 6px 15px;
 	text-decoration: none;
@@ -17,12 +20,12 @@
 }
 
 .product-properties {
-	display: inline-block;
+	float: left;
 	border: 1px solid black;
-	padding: 0.1px;
-	margin: 0.5px;
-	max-width: 260px;
-	min-width: 260px;
+	padding: 10px;
+	margin: 10px;
+	width: 260px;
+	height: 300px;
 }
 
 .product-div {
@@ -62,4 +65,12 @@ textarea {
 	list-style-type: none;
 	display: inline;
 	padding-right:10px;
+}
+
+.product-image {
+	height: auto;
+	width: auto;
+	max-width: 190px;
+	max-height: 190px;
+
 }

@@ -17,8 +17,8 @@ namespace myWebApplication.Controllers
 			_applicationSettings = applicationSettings;
 		}
 
-		[Route("Index")]
-		public ActionResult Index()
+		[Route("Home")]
+		public ActionResult Home()
 		{
 			return View();
 		}
@@ -40,7 +40,7 @@ namespace myWebApplication.Controllers
 		{
 			var searchHistoryResult = _searchHistoryProvider.GetHistory();
 
-			return PartialView(searchHistoryResult.Histories);
+			return PartialView(searchHistoryResult);
 		}
 	}
 }

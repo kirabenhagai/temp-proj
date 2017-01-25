@@ -7,3 +7,7 @@ C:\dev\myWebApplication\DataAccess\bin\Debug\Domain.pdb
 C:\dev\myWebApplication\DataAccess\bin\Debug\Newtonsoft.Json.xml
 C:\dev\myWebApplication\DataAccess\obj\Debug\DataAccess.dll
 C:\dev\myWebApplication\DataAccess\obj\Debug\DataAccess.pdb
+C:\dev\myWebApplication\DataAccess\bin\Debug\Iesi.Collections.dll
+C:\dev\myWebApplication\DataAccess\bin\Debug\NHibernate.dll
+C:\dev\myWebApplication\DataAccess\bin\Debug\Iesi.Collections.xml
+C:\dev\myWebApplication\DataAccess\bin\Debug\NHibernate.xml

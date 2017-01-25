@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
+using DataAccess.SearchHistory;
 using Domain;
-using myWebApplication.Domain;
 
 namespace myWebApplication.Controllers
 {

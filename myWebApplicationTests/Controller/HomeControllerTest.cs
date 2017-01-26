@@ -7,7 +7,7 @@ using myWebApplication.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace myWebApplicationTests
+namespace myWebApplicationTests.Controller
 {
 	[TestClass]
 	public class HomeControllerTest
@@ -24,7 +24,7 @@ namespace myWebApplicationTests
 		}
 
 		[TestMethod]
-		public void TestHome()
+		public void Home_WhenHomeRoute_RetutnsViewResult()
 		{
 			var result = _target.Home();
 
@@ -33,7 +33,7 @@ namespace myWebApplicationTests
 		}
 
 		[TestMethod]
-		public void TestSearch_PassResultsFromProductsProviderToView()
+		public void Search_WhenSearchQuery_PassResultsFromProductsProviderToView()
 		{
 			var products = new List<ProductModel>()
 			{
@@ -59,7 +59,7 @@ namespace myWebApplicationTests
 		}
 
 		[TestMethod]
-		public void TestSearch_WhenNoResultsRedirectToHome()
+		public void Search_WhenNoResults_RedirectToHome()
 		{
 			_productProvider.Setup(p => p.SearchProducts("myquery")).Returns((IList<ProductModel>) null);
 
@@ -68,13 +68,12 @@ namespace myWebApplicationTests
 			_productProvider.Verify(p => p.SearchProducts("myquery"), Times.Once());
 			_searchHistoryProvider.Verify(s => s.AddToHistory("myquery"), Times.Never);
 			Assert.IsNotNull(result);
-
 			Assert.AreEqual("Search", result.RouteValues["action"].ToString());
 			Assert.AreEqual("Home", result.RouteValues["controller"].ToString());
 		}
 
 		[TestMethod]
-		public void TestSearchHistory_PassResultsFromHistoryProviderToView()
+		public void SearchHistory_WhenPressOnHostory_PassResultsFromHistoryProviderToView()
 		{
 			var histories = new List<SearchHistoryDto>()
 			{
@@ -86,12 +85,9 @@ namespace myWebApplicationTests
 			var result = _target.SearchHistory();
 
 			_searchHistoryProvider.Verify(s => s.GetHistory(), Times.Once);
-
 			Assert.IsInstanceOfType(result, typeof(PartialViewResult));
 			var data = (IList<SearchHistoryDto>)((PartialViewResult)result).Model;
 			Assert.AreSame(histories, data);
 		}
-
-
 	}
 }

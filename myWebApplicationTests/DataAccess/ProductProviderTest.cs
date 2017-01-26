@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DataAccess.SearchHistory;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,6 +11,7 @@ namespace myWebApplicationTests.DataAccess
 	{
 		private readonly Mock<IResultsFetcher> _fetcher = new Mock<IResultsFetcher>();
 		private readonly Mock<IApplicationSettings> _applicationSettings = new Mock<IApplicationSettings>();
+
 		private IProductProvider _target;
 
 		[TestInitialize]
@@ -24,7 +21,7 @@ namespace myWebApplicationTests.DataAccess
 		}
 
 		[TestMethod]
-		public void TestSearchProducts_OnNull_ShouldReturnEmptyResults()
+		public void SearchProducts_OnNull_ShouldReturnEmptyResults()
 		{
 			_fetcher.Setup(p => p.Fetch("myquery")).Returns((IList<ProductModel>) null);
 
@@ -36,7 +33,7 @@ namespace myWebApplicationTests.DataAccess
 		}
 
 		[TestMethod]
-		public void TestSearchProducts_OnResultsFromFetcher_ShouldReturnResults()
+		public void SearchProducts_OnResultsFromFetcher_ShouldReturnResults()
 		{
 			var products = new List<ProductModel>()
 			{
@@ -54,9 +51,7 @@ namespace myWebApplicationTests.DataAccess
 			var results = _target.SearchProducts("myquery");
 
 			_fetcher.Verify(p => p.Fetch("myquery"), Times.Once);
-
 			Assert.AreEqual(products, results);
 		}
-
 	}
 }

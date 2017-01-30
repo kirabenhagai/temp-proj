@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccess.ResultsFetcher;
-using DataAccess.SearchHistory;
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -24,7 +19,7 @@ namespace myWebApplicationTests.DataAccess
 		}
 
 		[TestMethod]
-		public void TestGetSearchUri_OnSearch_ShouldReturnTheRightUri()
+		public void GetSearchUri_WhenOnSearch_ShouldReturnTheRightUri()
 		{
 			_applicationSettings.Setup(p => p.AppToken).Returns("token");
 			_applicationSettings.Setup(p => p.AppHash).Returns("hash");
@@ -34,8 +29,5 @@ namespace myWebApplicationTests.DataAccess
 
 			Assert.AreEqual(new Uri("http://sears.com/searchApi?q=MyUri&limit=20&token=token&hash=hash"), uri);
 		}
-
-
-
 	}
 }

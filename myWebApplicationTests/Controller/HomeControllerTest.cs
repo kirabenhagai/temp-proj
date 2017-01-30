@@ -58,7 +58,7 @@ namespace myWebApplicationTests.Controller
 			Assert.AreSame(products, data);
 		}
 
-		[TestMethod]
+		[TestMethod] 
 		public void Search_WhenNoResults_RedirectToHome()
 		{
 			_productProvider.Setup(p => p.SearchProducts("myquery")).Returns((IList<ProductModel>) null);

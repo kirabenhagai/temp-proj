@@ -6,5 +6,4 @@ namespace Domain
 	{
 		IList<ProductModel> Fetch(string search);
 	}
-
 }

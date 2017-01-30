@@ -8,13 +8,11 @@ namespace myWebApplication.Controllers
 	{
 		private readonly IProductProvider _productProvider;
 		private readonly ISearchHistoryProvider _searchHistoryProvider;
-		private readonly IApplicationSettings _applicationSettings;
 
 		public HomeController(IProductProvider productProvider, ISearchHistoryProvider searchHistoryProvider, IApplicationSettings applicationSettings)
 		{
 			_productProvider = productProvider;
 			_searchHistoryProvider = searchHistoryProvider;
-			_applicationSettings = applicationSettings;
 		}
 
 		[Route("Home")]
